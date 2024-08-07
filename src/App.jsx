@@ -1,6 +1,7 @@
-import { FiEdit, FiPlus, FiTrash } from "react-icons/fi";
 import { useState } from "react";
-
+import TaskItem from "./components/TaskItem";
+import TaskInput from "./components/TaskInput";
+import TaskList from "./components/TaskList";
 export default function App() {
   const [tasks, setTasks] = useState([
     { text: "Task1", status: 0 },
@@ -45,53 +46,17 @@ export default function App() {
 
   return (
     <div className="w-[400px] mx-auto my-4 border border-gray-200 p-4">
-      <div className="flex items-center">
-        <input
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-          type="text"
-          className="h-[40px] border border-gray-200 w-full outline-none pl-3"
-        ></input>
-        <button
-          onClick={handleClick}
-          className="w-[40px] h-[40px] inline-flex items-center justify-center bg-green-500 text-white"
-        >
-          <FiPlus />
-        </button>
-      </div>
-      <div className="mt-6">
-        {tasks.map((task, index) => (
-          <div key={index} className="flex border border-gray-200 p-2">
-            <label
-              htmlFor=""
-              className={`${
-                task.status ? "line-through" : ""
-              } flex items-center flex-1 space-x-1`}
-            >
-              <input
-                checked={task.status}
-                type="checkbox"
-                onChange={() => handleStatus(index)}
-              ></input>
-              <span>{task.text}</span>
-            </label>
-            <div className="space-x-2">
-              <button
-                onClick={() => handleEdit(index)}
-                className="bg-yellow-500 text-white w-[30px] h-[30px] inline-flex items-center justify-center rounded-md"
-              >
-                <FiEdit />
-              </button>
-              <button
-                onClick={() => handleDelete(index)}
-                className="bg-red-500 text-white w-[30px] h-[30px] inline-flex items-center justify-center rounded-md"
-              >
-                <FiTrash />
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
+      <TaskInput
+        text={text}
+        setText={setText}
+        handleClick={handleClick}
+      ></TaskInput>
+      <TaskList
+        tasks={tasks}
+        handleDelete={handleDelete}
+        handleEdit={handleEdit}
+        handleStatus={handleStatus}
+      ></TaskList>
     </div>
   );
 }
