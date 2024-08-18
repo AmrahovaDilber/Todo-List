@@ -1,10 +1,9 @@
+
 import TaskItem from "./TaskItem";
-export default function TaskList({
-  tasks = [],
-  handleDelete,
-  handleEdit,
-  handleStatus,
-}) {
+import {  useTaskContext } from "../context/GlobalContext";
+export default function TaskList() {
+  const { tasks, handleDelete, handleEdit, handleStatus } = useTaskContext()
+
   return (
     <div className="mt-6">
       {tasks.map((task, index) => (

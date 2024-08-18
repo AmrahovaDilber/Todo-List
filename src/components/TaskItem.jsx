@@ -1,11 +1,8 @@
+
 import { FiEdit, FiTrash } from "react-icons/fi";
-export default function TaskItem({
-  index,
-  task,
-  handleDelete,
-  handleEdit,
-  handleStatus,
-}) {
+import {useTaskContext } from "../context/GlobalContext";
+export default function TaskItem({ index, task }) {
+  const { handleDelete, handleEdit, handleStatus } =useTaskContext()
   return (
     <div key={index} className="flex border border-gray-200 p-2">
       <label

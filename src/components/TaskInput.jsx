@@ -1,6 +1,9 @@
-import { FiPlus } from "react-icons/fi";
 
-export default function TaskInput({ text, setText, handleClick }) {
+import { FiPlus } from "react-icons/fi";
+import { useTaskContext } from "../context/GlobalContext";
+
+export default function TaskInput() {
+  const{text,setText,handleClick}=useTaskContext()
   return (
     <div className="flex items-center">
       <input
